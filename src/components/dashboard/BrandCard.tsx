@@ -28,111 +28,99 @@ const formatNumber = (num: number) => {
 
 const BrandCard = ({ brand }: BrandCardProps) => {
   const total = brand.videos;
-  const performingPercent = (brand.performing / total) * 100;
-  const stagnatedPercent = (brand.stagnated / total) * 100;
-  const needsBoostPercent = (brand.needsBoost / total) * 100;
-  const inactivePercent = (brand.inactive / total) * 100;
+
+  const statusCategories = [
+    {
+      label: "Performing",
+      count: brand.performing,
+      percent: (brand.performing / total) * 100,
+      color: "bg-emerald-500",
+      bgLight: "bg-emerald-500/10",
+      textColor: "text-emerald-600",
+    },
+    {
+      label: "Needs Boost",
+      count: brand.needsBoost,
+      percent: (brand.needsBoost / total) * 100,
+      color: "bg-blue-500",
+      bgLight: "bg-blue-500/10",
+      textColor: "text-blue-600",
+    },
+    {
+      label: "Stagnated",
+      count: brand.stagnated,
+      percent: (brand.stagnated / total) * 100,
+      color: "bg-amber-500",
+      bgLight: "bg-amber-500/10",
+      textColor: "text-amber-600",
+    },
+    {
+      label: "Inactive",
+      count: brand.inactive,
+      percent: (brand.inactive / total) * 100,
+      color: "bg-slate-400",
+      bgLight: "bg-slate-400/10",
+      textColor: "text-slate-600",
+    },
+  ];
 
   return (
     <Link
       href={`/brands/${brand.id}`}
-      className="group block rounded-xl border border-transparent bg-card p-5 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
+      className="group block rounded-xl border bg-card p-6 transition-all duration-300 hover:border-primary/20 hover:shadow-lg"
     >
-      <div className="flex items-start justify-between mb-5">
+      <div className="flex items-start justify-between mb-6">
         <div>
-          <h3 className="text-lg font-semibold text-foreground transition-colors">
+          <h3 className="text-xl font-bold text-foreground mb-1">
             {brand.name}
           </h3>
-          <p className="text-sm text-muted-foreground">{brand.videos} videos tracked</p>
+          <p className="text-sm text-muted-foreground">{brand.videos} videos</p>
         </div>
         <div className="text-right">
           <p className="text-2xl font-bold text-foreground">
             {formatNumber(brand.reach)}
           </p>
-          <div className="flex items-center gap-1 text-success">
-            <TrendingUp className="h-3 w-3" />
-            <span className="text-xs">reach</span>
+          <div className="flex items-center justify-end gap-1 text-success">
+            <TrendingUp className="h-3.5 w-3.5" />
+            <span className="text-xs font-medium">reach</span>
           </div>
         </div>
       </div>
 
-      {/* Performance Distribution Bar */}
       <div className="space-y-3">
-        <div className="flex items-center justify-between text-xs text-muted-foreground">
-          <span>Performance Distribution</span>
-          <span>{total} total</span>
-        </div>
-
-        {/* Stacked Bar */}
-        <div className="relative h-3 w-full overflow-hidden rounded-full bg-muted/50">
-          <div className="flex h-full">
-            {brand.performing > 0 && (
-              <div
-                className="h-full bg-gradient-to-r from-secondary to-secondary/80 transition-all duration-500 group-hover:brightness-110"
-                style={{ width: `${performingPercent}%` }}
-              />
-            )}
-            {brand.stagnated > 0 && (
-              <div
-                className="h-full bg-gradient-to-r from-warning to-warning/80 transition-all duration-500 group-hover:brightness-110"
-                style={{ width: `${stagnatedPercent}%` }}
-              />
-            )}
-            {brand.needsBoost > 0 && (
-              <div
-                className="h-full bg-gradient-to-r from-primary to-primary/80 transition-all duration-500 group-hover:brightness-110"
-                style={{ width: `${needsBoostPercent}%` }}
-              />
-            )}
-            {brand.inactive > 0 && (
-              <div
-                className="h-full bg-gradient-to-r from-muted-foreground/30 to-muted-foreground/20 transition-all duration-500 group-hover:brightness-110"
-                style={{ width: `${inactivePercent}%` }}
-              />
-            )}
-          </div>
-        </div>
-
-        {/* Legend */}
-        <div className="grid grid-cols-2 gap-2 text-xs">
-          {brand.performing > 0 && (
-            <div className="flex items-center gap-1.5">
-              <div className="h-2 w-2 rounded-full bg-secondary" />
-              <span className="text-muted-foreground">
-                <span className="font-medium text-foreground">{brand.performing}</span> performing
-              </span>
+        {statusCategories.map((status) => (
+          status.count > 0 && (
+            <div key={status.label} className="space-y-1.5">
+              <div className="flex items-center justify-between text-xs">
+                <span className="font-medium text-foreground">{status.label}</span>
+                <div className="flex items-center gap-2">
+                  <span className={`font-semibold ${status.textColor}`}>
+                    {status.count}
+                  </span>
+                  <span className="text-muted-foreground">
+                    {status.percent.toFixed(0)}%
+                  </span>
+                </div>
+              </div>
+              <div className={`relative h-2 w-full overflow-hidden rounded-full ${status.bgLight}`}>
+                <div
+                  className={`h-full rounded-full ${status.color} transition-all duration-700 ease-out`}
+                  style={{ width: `${status.percent}%` }}
+                />
+              </div>
             </div>
-          )}
-          {brand.stagnated > 0 && (
-            <div className="flex items-center gap-1.5">
-              <div className="h-2 w-2 rounded-full bg-warning" />
-              <span className="text-muted-foreground">
-                <span className="font-medium text-foreground">{brand.stagnated}</span> stagnated
-              </span>
-            </div>
-          )}
-          {brand.needsBoost > 0 && (
-            <div className="flex items-center gap-1.5">
-              <div className="h-2 w-2 rounded-full bg-primary" />
-              <span className="text-muted-foreground">
-                <span className="font-medium text-foreground">{brand.needsBoost}</span> need boost
-              </span>
-            </div>
-          )}
-          {brand.inactive > 0 && (
-            <div className="flex items-center gap-1.5">
-              <div className="h-2 w-2 rounded-full bg-muted-foreground/30" />
-              <span className="text-muted-foreground">
-                <span className="font-medium text-foreground">{brand.inactive}</span> inactive
-              </span>
-            </div>
-          )}
-        </div>
+          )
+        ))}
       </div>
 
-      <div className="mt-4 flex items-center text-sm text-muted-foreground group-hover:text-accent transition-colors">
-        View details
-        <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+      <div className="mt-5 pt-4 border-t flex items-center justify-between">
+        <div className="text-xs text-muted-foreground">
+          Last updated: 2h ago
+        </div>
+        <div className="flex items-center text-sm font-medium text-primary group-hover:text-accent transition-colors">
+          View details
+          <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-1" />
+        </div>
       </div>
     </Link>
   );
