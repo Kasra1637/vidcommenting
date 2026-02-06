@@ -35,7 +35,6 @@ const BrandCard = ({ brand }: BrandCardProps) => {
       count: brand.performing,
       percent: (brand.performing / total) * 100,
       color: "bg-emerald-500",
-      bgLight: "bg-emerald-500/10",
       textColor: "text-emerald-600",
     },
     {
@@ -43,7 +42,6 @@ const BrandCard = ({ brand }: BrandCardProps) => {
       count: brand.needsBoost,
       percent: (brand.needsBoost / total) * 100,
       color: "bg-blue-500",
-      bgLight: "bg-blue-500/10",
       textColor: "text-blue-600",
     },
     {
@@ -51,7 +49,6 @@ const BrandCard = ({ brand }: BrandCardProps) => {
       count: brand.stagnated,
       percent: (brand.stagnated / total) * 100,
       color: "bg-amber-500",
-      bgLight: "bg-amber-500/10",
       textColor: "text-amber-600",
     },
     {
@@ -59,7 +56,6 @@ const BrandCard = ({ brand }: BrandCardProps) => {
       count: brand.inactive,
       percent: (brand.inactive / total) * 100,
       color: "bg-slate-400",
-      bgLight: "bg-slate-400/10",
       textColor: "text-slate-600",
     },
   ];
@@ -102,7 +98,7 @@ const BrandCard = ({ brand }: BrandCardProps) => {
                   </span>
                 </div>
               </div>
-              <div className={`relative h-2 w-full overflow-hidden rounded-full ${status.bgLight}`}>
+              <div className="relative h-2 w-full overflow-hidden rounded-full bg-muted/30">
                 <div
                   className={`h-full rounded-full ${status.color} transition-all duration-700 ease-out`}
                   style={{ width: `${status.percent}%` }}
