@@ -100,7 +100,6 @@ const AppLayout = ({ children }: AppLayoutProps) => {
                           "nav-item",
                           isActive && "nav-item-active"
                         )}
-                        whileHover={{ y: -2, x: 2 }}
                         whileTap={{ scale: 0.98 }}
                       >
                         <Icon className="h-4 w-4" />
@@ -125,7 +124,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
         <div className="border-t border-sidebar-border/30 p-3">
           <div className="flex items-center gap-2">
             <Link href="/help" className="flex-1">
-              <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
+              <motion.div whileTap={{ scale: 0.98 }}>
                 <Button
                   variant="ghost"
                   size="sm"
@@ -136,7 +135,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
                 </Button>
               </motion.div>
             </Link>
-            <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
+            <motion.div whileTap={{ scale: 0.98 }}>
               <Button
                 variant="ghost"
                 size="icon"
