@@ -30,7 +30,7 @@ const BrandCard = ({ brand }: BrandCardProps) => {
   return (
     <Link
       href={`/brands/${brand.id}`}
-      className="group block rounded-xl border bg-card p-5 transition-all duration-200"
+      className="group block rounded-xl border border-transparent bg-card p-5 transition-all duration-200"
     >
       <div className="flex items-start justify-between">
         <div>
