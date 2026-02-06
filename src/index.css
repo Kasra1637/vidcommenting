@@ -150,9 +150,6 @@
 
   .glass-card:hover {
     transform: translateY(-4px);
-    box-shadow: 
-      0 20px 40px -10px hsl(222 47% 0% / 0.5),
-      0 0 30px -5px hsl(var(--glass-glow) / 0.2);
   }
 
   /* Floating Sidebar Glass */
@@ -225,7 +222,6 @@
 
   .shimmer-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px -5px hsl(var(--primary) / 0.4);
   }
 
   .shimmer-button::before {
@@ -329,9 +325,6 @@
   .nav-item:hover {
     transform: translateX(6px);
     background: hsl(var(--sidebar-accent) / 0.1);
-    box-shadow: 
-      inset 0 1px 0 0 hsl(0 0% 100% / 0.05),
-      0 4px 12px -2px hsl(222 47% 0% / 0.3);
   }
 
   .nav-item-active {
@@ -426,7 +419,6 @@
 
   .hover-lift:hover {
     transform: translateY(-4px);
-    box-shadow: 0 20px 40px -10px hsl(222 47% 0% / 0.5);
   }
 
   /* Refraction effect on hover */
