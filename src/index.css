@@ -123,10 +123,6 @@
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid hsl(var(--glass-border) / 0.3);
-    box-shadow: 
-      0 0 0 1px hsl(var(--glass-glow) / 0.05),
-      0 8px 32px -8px hsl(222 47% 0% / 0.4),
-      inset 0 1px 0 0 hsl(0 0% 100% / 0.05);
   }
 
   .glass-card::before {
@@ -202,9 +198,6 @@
 
   .glow-input:focus-within {
     border-color: hsl(var(--glass-glow) / 0.6);
-    box-shadow: 
-      0 0 0 3px hsl(var(--glass-glow) / 0.1),
-      0 0 20px -5px hsl(var(--glass-glow) / 0.4);
   }
 
   /* Liquid Shimmer Button */
@@ -290,7 +283,6 @@
 
   .status-performing {
     @apply bg-secondary/20 text-secondary;
-    box-shadow: 0 0 10px hsl(var(--secondary) / 0.3);
   }
 
   .status-stagnated {
@@ -299,12 +291,10 @@
 
   .status-needs-boost {
     @apply bg-primary/20 text-primary;
-    box-shadow: 0 0 10px hsl(var(--primary) / 0.3);
   }
 
   .status-boosting {
     @apply bg-primary/25 text-primary;
-    animation: pulse-glow 2s ease-in-out infinite;
   }
 
   .status-inactive {
@@ -334,27 +324,20 @@
       hsl(var(--sidebar-accent) / 0.5) 0%,
       hsl(var(--sidebar-accent) / 0.3) 100%
     );
-    box-shadow: 
-      inset 0 1px 0 0 hsl(0 0% 100% / 0.1),
-      0 0 20px -5px hsl(var(--sidebar-primary) / 0.3);
   }
 
   /* AI Glow Effects */
   .ai-glow {
-    box-shadow: 0 0 30px hsl(var(--primary) / 0.4);
   }
 
   .ai-glow-subtle {
-    box-shadow: 0 0 15px hsl(var(--primary) / 0.2);
   }
 
   .cyan-glow {
-    box-shadow: 0 0 30px hsl(var(--secondary) / 0.4);
   }
 
   /* Progress bar glow */
   .progress-glow {
-    box-shadow: 0 0 10px hsl(var(--primary) / 0.5);
   }
 
   /* Floating effect */
