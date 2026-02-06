@@ -351,6 +351,16 @@
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
   }
+
+  /* Recharts bar hover state */
+  .recharts-bar-rectangle {
+    transition: all 0.3s ease !important;
+  }
+
+  .recharts-surface:hover .recharts-bar-rectangle,
+  .recharts-wrapper:hover .recharts-bar-rectangle {
+    opacity: 0.9 !important;
+  }
 }
 
 @layer utilities {
