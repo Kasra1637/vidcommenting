@@ -116,13 +116,19 @@
   .glass-card {
     @apply relative overflow-hidden rounded-2xl;
     background: linear-gradient(
-      135deg,
-      hsl(var(--glass-bg) / 0.6) 0%,
+      145deg,
+      hsl(var(--glass-bg) / 0.7) 0%,
+      hsl(var(--glass-bg) / 0.5) 50%,
       hsl(var(--glass-bg) / 0.4) 100%
     );
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid hsl(var(--glass-border) / 0.3);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid hsl(var(--glass-border) / 0.25);
+    box-shadow:
+      0 4px 24px -4px hsl(222 47% 6% / 0.5),
+      0 0 0 1px hsl(var(--glass-border) / 0.1) inset,
+      0 1px 0 hsl(0 0% 100% / 0.03) inset;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .glass-card::before {
@@ -132,20 +138,79 @@
     border-radius: inherit;
     padding: 1px;
     background: linear-gradient(
-      135deg,
-      hsl(var(--glass-glow) / 0.15) 0%,
-      transparent 50%,
-      hsl(var(--glass-glow-cyan) / 0.1) 100%
+      145deg,
+      hsl(0 0% 100% / 0.08) 0%,
+      transparent 40%,
+      hsl(var(--glass-glow-cyan) / 0.05) 100%
     );
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
+    transition: all 0.4s ease;
+  }
+
+  .glass-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(0 0% 100% / 0.1) 20%,
+      hsl(0 0% 100% / 0.15) 50%,
+      hsl(0 0% 100% / 0.1) 80%,
+      transparent 100%
+    );
+    pointer-events: none;
   }
 
   .glass-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-6px);
+    border-color: hsl(var(--glass-border) / 0.4);
+    box-shadow:
+      0 20px 40px -12px hsl(222 47% 6% / 0.6),
+      0 0 0 1px hsl(var(--glass-border) / 0.15) inset,
+      0 1px 0 hsl(0 0% 100% / 0.05) inset;
+  }
+
+  .glass-card:hover::before {
+    background: linear-gradient(
+      145deg,
+      hsl(0 0% 100% / 0.12) 0%,
+      transparent 35%,
+      hsl(var(--glass-glow-cyan) / 0.08) 100%
+    );
+  }
+
+  /* Glass card with subtle glow */
+  .glass-card-glow {
+    position: relative;
+  }
+
+  .glass-card-glow::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      145deg,
+      hsl(var(--glass-glow-cyan) / 0.15) 0%,
+      transparent 50%,
+      hsl(var(--glass-glow) / 0.1) 100%
+    );
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    filter: blur(8px);
+  }
+
+  .glass-card-glow:hover::after {
+    opacity: 1;
   }
 
   /* Floating Sidebar Glass */
@@ -409,20 +474,21 @@
 
   /* Hover effects */
   .hover-lift {
-    @apply transition-all duration-300;
+    @apply transition-all;
+    transition-duration: 400ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .hover-lift:hover {
-    transform: translateY(-4px);
+    transform: translateY(-6px);
   }
 
-  /* Refraction effect on hover */
-  .refract-hover {
-    @apply transition-all duration-500;
+  /* Subtle scale on hover */
+  .hover-scale {
+    @apply transition-transform duration-300;
   }
 
-  .refract-hover:hover {
-    backdrop-filter: blur(30px) saturate(200%) brightness(1.1);
-    -webkit-backdrop-filter: blur(30px) saturate(200%) brightness(1.1);
+  .hover-scale:hover {
+    transform: scale(1.02);
   }
 }

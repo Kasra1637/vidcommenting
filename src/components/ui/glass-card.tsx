@@ -5,7 +5,8 @@ interface GlassCardProps extends HTMLMotionProps<"div"> {
   children: React.ReactNode;
   className?: string;
   hover?: boolean;
-  glow?: "purple" | "cyan" | "none";
+  glow?: "cyan" | "accent" | "subtle" | "none";
+  variant?: "default" | "elevated" | "flat";
 }
 
 export const GlassCard = ({
@@ -13,25 +14,35 @@ export const GlassCard = ({
   className,
   hover = true,
   glow = "none",
+  variant = "default",
   ...props
 }: GlassCardProps) => {
   const glowStyles = {
-    purple: "",
-    cyan: "",
+    cyan: "glass-card-glow",
+    accent: "glass-card-glow",
+    subtle: "",
     none: "",
+  };
+
+  const variantStyles = {
+    default: "",
+    elevated: "shadow-xl",
+    flat: "shadow-none border-transparent",
   };
 
   return (
     <motion.div
       className={cn(
         "glass-card p-6",
-        hover && "hover-lift refract-hover cursor-pointer",
+        hover && "hover-lift cursor-pointer",
         glowStyles[glow],
+        variantStyles[variant],
         className
       )}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
+      whileHover={hover ? { scale: 1.01 } : undefined}
       {...props}
     >
       {children}
