@@ -81,13 +81,13 @@
    const getStatusIcon = (status: StatusItem["status"]) => {
      switch (status) {
        case "active":
-         return <Loader2 className="h-4 w-4 animate-spin text-primary" />;
+         return <Loader2 className="h-4 w-4 animate-spin text-white/90" />;
        case "completed":
-         return <CheckCircle className="h-4 w-4 text-success" />;
+         return <CheckCircle className="h-4 w-4 text-white/90" />;
        case "waiting":
-         return <Clock className="h-4 w-4 text-warning" />;
+         return <Clock className="h-4 w-4 text-white/90" />;
        default:
-         return <AlertCircle className="h-4 w-4 text-muted-foreground" />;
+         return <AlertCircle className="h-4 w-4 text-white/70" />;
      }
    };
  
@@ -119,7 +119,7 @@
            <div className="flex items-center gap-4">
              <div className="relative">
                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
-                 <Sparkles className="h-7 w-7 text-primary" />
+                 <Sparkles className="h-7 w-7 text-white/90" />
                </div>
                {isActive && (
                  <span className="absolute -right-1 -top-1 flex h-4 w-4">
@@ -154,7 +154,7 @@
            <div className="flex items-center justify-between mb-3">
              <div className="flex items-center gap-2">
                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
-                 <Search className="h-5 w-5 text-primary" />
+                 <Search className="h-5 w-5 text-white/90" />
                </div>
                <span className="font-medium">Auto Discovery</span>
              </div>
@@ -181,7 +181,7 @@
            <div className="flex items-center justify-between mb-3">
              <div className="flex items-center gap-2">
                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-info/10">
-                 <MessageSquare className="h-5 w-5 text-info" />
+                 <MessageSquare className="h-5 w-5 text-white/90" />
                </div>
                <span className="font-medium">Generation</span>
              </div>
@@ -204,7 +204,7 @@
            <div className="flex items-center justify-between mb-3">
              <div className="flex items-center gap-2">
                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-warning/10">
-                 <TrendingUp className="h-5 w-5 text-warning" />
+                 <TrendingUp className="h-5 w-5 text-white/90" />
                </div>
                <span className="font-medium">Evaluation</span>
              </div>
@@ -234,7 +234,7 @@
            <div className="flex items-center justify-between mb-3">
              <div className="flex items-center gap-2">
                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-success/10">
-                 <CheckCircle className="h-5 w-5 text-success" />
+                 <CheckCircle className="h-5 w-5 text-white/90" />
                </div>
                <span className="font-medium">Smart Approval</span>
              </div>
@@ -265,7 +265,7 @@
            <div className="flex items-center justify-between mb-3">
              <div className="flex items-center gap-2">
                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent/10">
-                 <Send className="h-5 w-5 text-accent-foreground" />
+                 <Send className="h-5 w-5 text-white/90" />
                </div>
                <span className="font-medium">Auto Posting</span>
              </div>
@@ -289,7 +289,7 @@
          {/* Summary Card */}
          <div className="rounded-xl border bg-gradient-to-br from-primary/5 to-success/5 p-5">
            <div className="flex items-center gap-2 mb-3">
-             <Zap className="h-5 w-5 text-primary" />
+             <Zap className="h-5 w-5 text-white/90" />
              <span className="font-medium">Pipeline Summary</span>
            </div>
            <div className="space-y-3">
@@ -312,7 +312,7 @@
        {/* Activity Log */}
        <div className="rounded-xl border bg-card p-5">
          <h3 className="font-medium mb-4 flex items-center gap-2">
-           <Video className="h-4 w-4" />
+           <Video className="h-4 w-4 text-white/90" />
            Recent Activity
          </h3>
          <div className="space-y-3">

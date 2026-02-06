@@ -99,13 +99,13 @@ const Dashboard = () => {
           <div className="flex gap-3">
             <Link href="/discovery">
               <ShimmerButton variant="secondary" size="sm">
-                <Sparkles className="h-4 w-4" />
+                <Sparkles className="h-4 w-4 text-white/90" />
                 AI Discovery
               </ShimmerButton>
             </Link>
             <Link href="/brands/new">
               <ShimmerButton size="sm">
-                <Plus className="h-4 w-4" />
+                <Plus className="h-4 w-4 text-white/90" />
                 New Brand
               </ShimmerButton>
             </Link>
@@ -117,8 +117,8 @@ const Dashboard = () => {
           {/* Live Metrics - Small tiles */}
           <BentoCard size="sm" glow="none" className="p-5">
             <div className="flex items-center gap-3 mb-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary/10">
-                <Eye className="h-5 w-5 text-secondary" />
+              <div className="icon-container icon-container-md">
+                <Eye className="h-5 w-5 text-white/90" />
               </div>
               <span className="text-xs uppercase tracking-wider text-muted-foreground">
                 Total Reach
@@ -129,8 +129,8 @@ const Dashboard = () => {
 
           <BentoCard size="sm" glow="none" className="p-5">
             <div className="flex items-center gap-3 mb-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
-                <Activity className="h-5 w-5 text-primary" />
+              <div className="icon-container icon-container-md">
+                <Activity className="h-5 w-5 text-white/90" />
               </div>
               <span className="text-xs uppercase tracking-wider text-muted-foreground">
                 Engagement
@@ -141,8 +141,8 @@ const Dashboard = () => {
 
           <BentoCard size="sm" glow="none" className="p-5">
             <div className="flex items-center gap-3 mb-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
-                <Play className="h-5 w-5 text-primary" />
+              <div className="icon-container icon-container-md">
+                <Play className="h-5 w-5 text-white/90" />
               </div>
               <span className="text-xs uppercase tracking-wider text-muted-foreground">
                 Active Videos
@@ -153,8 +153,8 @@ const Dashboard = () => {
 
           <BentoCard size="sm" glow="none" className="p-5">
             <div className="flex items-center gap-3 mb-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary/10">
-                <MessageSquare className="h-5 w-5 text-secondary" />
+              <div className="icon-container icon-container-md">
+                <MessageSquare className="h-5 w-5 text-white/90" />
               </div>
               <span className="text-xs uppercase tracking-wider text-muted-foreground">
                 Comments
@@ -167,8 +167,8 @@ const Dashboard = () => {
           <BentoCard size="xl" glow="none" hover={false} className="p-6">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/20 ai-glow-subtle">
-                  <Sparkles className="h-5 w-5 text-primary" />
+                <div className="icon-container icon-container-md">
+                  <Sparkles className="h-5 w-5 text-white/90" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Trending Discovery</h3>
@@ -233,8 +233,8 @@ const Dashboard = () => {
           {/* AI Agent Activity Feed */}
           <BentoCard size="md" glow="none" hover={false} className="p-6">
             <div className="flex items-center gap-3 mb-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary/20 animate-pulse">
-                <Bot className="h-5 w-5 text-secondary" />
+              <div className="icon-container icon-container-md">
+                <Bot className="h-5 w-5 text-white/90" />
               </div>
               <div>
                 <h3 className="font-semibold text-foreground">AI Agent Activity</h3>
@@ -274,8 +274,8 @@ const Dashboard = () => {
           {/* AI Command Center */}
           <BentoCard size="lg" glow="none" className="p-6">
             <div className="flex items-center gap-3 mb-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/20 ai-glow">
-                <Zap className="h-5 w-5 text-primary" />
+              <div className="icon-container icon-container-md">
+                <Zap className="h-5 w-5 text-white/90" />
               </div>
               <div>
                 <h3 className="font-semibold text-foreground">AI Command Center</h3>
@@ -311,18 +311,18 @@ const Dashboard = () => {
 
               <div className="text-center py-4">
                 <motion.div
-                  className="inline-flex items-center gap-2 text-primary"
+                  className="inline-flex items-center gap-2 text-muted-foreground"
                   animate={{ opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
-                  <Bot className="h-5 w-5" />
+                  <Bot className="h-5 w-5 text-white/90" />
                   <span className="font-mono text-sm">AI is working for Olovka AI</span>
                 </motion.div>
               </div>
 
               <Link href="/brands">
                 <ShimmerButton className="w-full">
-                  <Sparkles className="h-4 w-4" />
+                  <Sparkles className="h-4 w-4 text-white/90" />
                   Configure Automation
                 </ShimmerButton>
               </Link>
@@ -332,8 +332,8 @@ const Dashboard = () => {
           {/* Quick Stats Row */}
           <BentoCard size="lg" className="p-6" glow="none">
             <div className="flex items-center gap-3 mb-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary/10">
-                <TrendingUp className="h-5 w-5 text-secondary" />
+              <div className="icon-container icon-container-md">
+                <TrendingUp className="h-5 w-5 text-white/90" />
               </div>
               <div>
                 <h3 className="font-semibold text-foreground">Performance Overview</h3>

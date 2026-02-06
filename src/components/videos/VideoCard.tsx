@@ -119,21 +119,21 @@ export const VideoCard = ({
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuItem>
-                  <Eye className="mr-2 h-4 w-4" />
+                  <Eye className="mr-2 h-4 w-4 text-white/90" />
                   View Details
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <ExternalLink className="mr-2 h-4 w-4" />
+                  <ExternalLink className="mr-2 h-4 w-4 text-white/90" />
                   Open on {platform === "youtube" ? "YouTube" : "TikTok"}
                 </DropdownMenuItem>
                 {status === "needs-boost" && (
                   <DropdownMenuItem>
-                    <Zap className="mr-2 h-4 w-4" />
+                    <Zap className="mr-2 h-4 w-4 text-white/90" />
                     Boost Comment
                   </DropdownMenuItem>
                 )}
                 <DropdownMenuItem className="text-destructive">
-                  <Trash2 className="mr-2 h-4 w-4" />
+                  <Trash2 className="mr-2 h-4 w-4 text-white/90" />
                   Remove
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -181,8 +181,8 @@ export const VideoCard = ({
 
         <div className="grid grid-cols-2 gap-3 pt-3 border-t border-border/50">
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary/10">
-              <MessageSquare className="h-4 w-4 text-secondary" />
+            <div className="icon-container icon-container-sm">
+              <MessageSquare className="h-4 w-4 text-white/90" />
             </div>
             <div>
               <p className="text-xs text-muted-foreground">Position</p>
@@ -192,8 +192,8 @@ export const VideoCard = ({
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10">
-              <TrendingUp className="h-4 w-4 text-emerald-400" />
+            <div className="icon-container icon-container-sm">
+              <TrendingUp className="h-4 w-4 text-white/90" />
             </div>
             <div>
               <p className="text-xs text-muted-foreground">Reach</p>

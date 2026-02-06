@@ -91,7 +91,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
                         )}
                         whileTap={{ scale: 0.98 }}
                       >
-                        <Icon className="h-4 w-4" />
+                        <Icon className="h-4 w-4 text-white/90" />
                         <span>{item.name}</span>
                         {isActive && (
                           <motion.div
@@ -119,7 +119,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
                   size="sm"
                   className="w-full justify-start text-sidebar-foreground/70"
                 >
-                  <HelpCircle className="mr-2 h-4 w-4" />
+                  <HelpCircle className="mr-2 h-4 w-4 text-white/90" />
                   Help
                 </Button>
               </motion.div>
@@ -132,9 +132,9 @@ const AppLayout = ({ children }: AppLayoutProps) => {
                 className="text-sidebar-foreground/70"
               >
                 {theme === "light" ? (
-                  <Moon className="h-4 w-4" />
+                  <Moon className="h-4 w-4 text-white/90" />
                 ) : (
-                  <Sun className="h-4 w-4" />
+                  <Sun className="h-4 w-4 text-white/90" />
                 )}
               </Button>
             </motion.div>

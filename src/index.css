@@ -393,6 +393,30 @@
     );
   }
 
+  /* Premium Icon Styling */
+  .icon-premium {
+    @apply text-white/90;
+    filter: drop-shadow(0 1px 2px hsl(0 0% 0% / 0.1));
+  }
+
+  .icon-container {
+    @apply flex items-center justify-center rounded-xl;
+    @apply bg-white/5 backdrop-blur-sm;
+    @apply border border-white/10;
+  }
+
+  .icon-container-sm {
+    @apply h-8 w-8;
+  }
+
+  .icon-container-md {
+    @apply h-10 w-10;
+  }
+
+  .icon-container-lg {
+    @apply h-12 w-12;
+  }
+
   /* AI Glow Effects */
   .ai-glow {
   }
