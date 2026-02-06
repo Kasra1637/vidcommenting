@@ -308,13 +308,15 @@
 
   /* Navigation item */
   .nav-item {
-    @apply flex items-center gap-3 rounded-xl px-4 py-3.5 text-base font-medium transition-all duration-150;
+    @apply flex items-center gap-3 rounded-xl px-4 py-3.5 text-base font-medium;
     @apply text-sidebar-foreground/70;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .nav-item:hover {
-    transform: translateX(6px);
-    background: hsl(var(--sidebar-accent) / 0.1);
+    transform: translateX(8px) scale(1.02);
+    background: hsl(var(--sidebar-accent) / 0.15);
+    box-shadow: 0 4px 12px hsl(var(--primary) / 0.1);
   }
 
   .nav-item-active {
