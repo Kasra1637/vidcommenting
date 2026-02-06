@@ -87,7 +87,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
               <p className="mb-2 px-3 text-[10px] font-semibold uppercase tracking-widest text-sidebar-muted">
                 {section.title}
               </p>
-              <div className="space-y-1">
+              <div className="space-y-2">
                 {section.items.map((item) => {
                   const isActive =
                     location === item.href ||
