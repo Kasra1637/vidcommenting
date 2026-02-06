@@ -176,7 +176,7 @@ const Dashboard = () => {
                 </div>
               </div>
               <Link href="/discovery">
-                <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80">
+                <Button variant="ghost" size="sm" className="text-primary">
                   View all
                 </Button>
               </Link>

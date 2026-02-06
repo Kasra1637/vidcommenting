@@ -30,11 +30,11 @@ const BrandCard = ({ brand }: BrandCardProps) => {
   return (
     <Link
       href={`/brands/${brand.id}`}
-      className="group block rounded-xl border bg-card p-5 transition-all duration-200 hover:shadow-md"
+      className="group block rounded-xl border bg-card p-5 transition-all duration-200"
     >
       <div className="flex items-start justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-foreground group-hover:text-accent transition-colors">
+          <h3 className="text-lg font-semibold text-foreground transition-colors">
             {brand.name}
           </h3>
           <p className="text-sm text-muted-foreground">{brand.videos} videos</p>

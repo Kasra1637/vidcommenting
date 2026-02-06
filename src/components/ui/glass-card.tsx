@@ -16,8 +16,8 @@ export const GlassCard = ({
   ...props
 }: GlassCardProps) => {
   const glowStyles = {
-    purple: "hover:shadow-md",
-    cyan: "hover:shadow-md",
+    purple: "",
+    cyan: "",
     none: "",
   };
 

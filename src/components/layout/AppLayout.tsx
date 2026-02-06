@@ -128,7 +128,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
               <Button
                 variant="ghost"
                 size="sm"
-                className="w-full justify-start text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent/30"
+                className="w-full justify-start text-sidebar-foreground/70"
               >
                 <HelpCircle className="mr-2 h-4 w-4" />
                 Help
@@ -138,7 +138,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent/30"
+              className="text-sidebar-foreground/70"
             >
               {theme === "light" ? (
                 <Moon className="h-4 w-4" />

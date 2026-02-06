@@ -224,7 +224,7 @@ export const CommentGenerator = ({
               className={`glass-card flex cursor-pointer flex-col items-center gap-1.5 p-3 transition-all ${
                 selectedTone === tone.value
                   ? "ring-2 ring-primary ai-glow-subtle"
-                  : "hover:bg-muted/30"
+                  : ""
               }`}
             >
               <RadioGroupItem value={tone.value} id={tone.value} className="sr-only" />
@@ -362,7 +362,7 @@ export const CommentGenerator = ({
                   size="sm" 
                   variant="ghost" 
                   onClick={handleEdit}
-                  className="text-foreground hover:bg-muted/30"
+                  className="text-foreground"
                 >
                   <Edit2 className="mr-1 h-3 w-3" />
                   Edit
@@ -372,7 +372,7 @@ export const CommentGenerator = ({
                   variant="ghost" 
                   onClick={handleRegenerate} 
                   disabled={isGenerating}
-                  className="text-foreground hover:bg-muted/30"
+                  className="text-foreground"
                 >
                   <RefreshCw className={`mr-1 h-3 w-3 ${isGenerating ? "animate-spin" : ""}`} />
                   Regenerate
@@ -381,7 +381,7 @@ export const CommentGenerator = ({
                   size="sm" 
                   variant="ghost" 
                   onClick={handleReject}
-                  className="text-destructive hover:bg-destructive/10"
+                  className="text-destructive"
                 >
                   <X className="mr-1 h-3 w-3" />
                   Reject

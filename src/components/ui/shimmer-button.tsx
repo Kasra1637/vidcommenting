@@ -17,8 +17,8 @@ export const ShimmerButton = ({
 }: ShimmerButtonProps) => {
   const variants = {
     primary: "shimmer-button text-white",
-    secondary: "bg-secondary/20 text-secondary border border-secondary/30 hover:bg-secondary/30",
-    ghost: "bg-transparent text-foreground hover:bg-muted/50",
+    secondary: "bg-secondary/20 text-secondary border border-secondary/30",
+    ghost: "bg-transparent text-foreground",
   };
 
   const sizes = {

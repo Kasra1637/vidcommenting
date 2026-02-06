@@ -434,7 +434,7 @@ const NewBrand = () => {
                           className={`flex cursor-pointer items-center gap-4 rounded-lg border p-4 transition-colors ${
                             brandData.discoveryMode === mode.value
                               ? "border-primary bg-primary/5"
-                              : "hover:bg-muted/50"
+                              : ""
                           }`}
                         >
                           <RadioGroupItem value={mode.value} />
@@ -494,7 +494,7 @@ const NewBrand = () => {
                         className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                           brandData.contentTypes.includes(type)
                             ? "bg-primary text-primary-foreground"
-                            : "bg-muted text-muted-foreground hover:bg-muted/80"
+                            : "bg-muted text-muted-foreground"
                         }`}
                       >
                         {type}
@@ -521,7 +521,7 @@ const NewBrand = () => {
                         className={`flex items-center gap-2 rounded-lg border px-4 py-3 transition-all ${
                           brandData.platforms.includes(platform.value)
                             ? "border-primary bg-primary/5"
-                            : "border-border hover:bg-muted/50"
+                            : "border-border"
                         }`}
                       >
                         <platform.icon className={`h-5 w-5 ${
