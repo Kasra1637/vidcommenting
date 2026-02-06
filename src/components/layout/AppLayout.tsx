@@ -63,17 +63,6 @@ const AppLayout = ({ children }: AppLayoutProps) => {
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        {/* Logo */}
-        <div className="flex h-16 items-center px-6">
-          <Link href="/dashboard" className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/20">
-              <Zap className="h-4 w-4 text-primary" />
-            </div>
-            <span className="text-xl font-bold text-foreground">
-              Rumora<span className="text-primary">.</span>
-            </span>
-          </Link>
-        </div>
 
         {/* Navigation */}
         <nav className="flex-1 space-y-6 overflow-y-auto px-3 py-4">
