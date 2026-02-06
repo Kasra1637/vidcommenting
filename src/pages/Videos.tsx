@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Link } from "wouter";
+import { motion } from "framer-motion";
 import AppLayout from "@/components/layout/AppLayout";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -11,33 +10,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  Plus,
-  Search,
-  Filter,
-  MoreHorizontal,
-  ExternalLink,
-  Eye,
-  Zap,
-  Trash2,
-  PlayCircle,
-  Sparkles,
-} from "lucide-react";
-import { SiYoutube, SiTiktok } from "react-icons/si";
 import {
   Dialog,
   DialogContent,
@@ -48,6 +20,16 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { VideoCard } from "@/components/videos/VideoCard";
+import {
+  Plus,
+  Search,
+  Filter,
+  Sparkles,
+  LayoutGrid,
+  List,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type VideoStatus =
   | "performing"
@@ -71,30 +53,10 @@ interface Video {
   brand: string;
 }
 
-const statusLabels: Record<VideoStatus, string> = {
-  performing: "Performing Well",
-  stagnated: "Stagnated",
-  "needs-boost": "Needs Boost",
-  boosting: "Boosting",
-  inactive: "Inactive",
-  pending: "Pending Posting",
-  awaiting: "Awaiting Approval",
-};
-
-const statusStyles: Record<VideoStatus, string> = {
-  performing: "status-performing",
-  stagnated: "status-stagnated",
-  "needs-boost": "status-needs-boost",
-  boosting: "status-boosting",
-  inactive: "status-inactive",
-  pending: "status-pending",
-  awaiting: "status-awaiting",
-};
-
 const videosData: Video[] = [
   {
     id: "1",
-    thumbnail: "https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
+    thumbnail: "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800",
     title: "10 AI Tools That Will Change Your Life in 2024",
     channel: "Tech Insider",
     platform: "youtube",
@@ -106,7 +68,7 @@ const videosData: Video[] = [
   },
   {
     id: "2",
-    thumbnail: "https://i.ytimg.com/vi/jNQXAC9IVRw/hqdefault.jpg",
+    thumbnail: "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800",
     title: "How to Build a Startup in 30 Days",
     channel: "Startup Grind",
     platform: "youtube",
@@ -118,7 +80,7 @@ const videosData: Video[] = [
   },
   {
     id: "3",
-    thumbnail: "https://i.ytimg.com/vi/9bZkp7q19f0/hqdefault.jpg",
+    thumbnail: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800",
     title: "The Future of Content Creation with AI",
     channel: "Creator Lab",
     platform: "tiktok",
@@ -130,7 +92,7 @@ const videosData: Video[] = [
   },
   {
     id: "4",
-    thumbnail: "https://i.ytimg.com/vi/kJQP7kiw5Fk/hqdefault.jpg",
+    thumbnail: "https://images.pexels.com/photos/7413915/pexels-photo-7413915.jpeg?auto=compress&cs=tinysrgb&w=800",
     title: "Marketing Strategies for 2024",
     channel: "Marketing Pro",
     platform: "tiktok",
@@ -142,7 +104,7 @@ const videosData: Video[] = [
   },
   {
     id: "5",
-    thumbnail: "https://i.ytimg.com/vi/RgKAFK5djSk/hqdefault.jpg",
+    thumbnail: "https://images.pexels.com/photos/5926382/pexels-photo-5926382.jpeg?auto=compress&cs=tinysrgb&w=800",
     title: "Best Productivity Apps You Need",
     channel: "App Reviews",
     platform: "youtube",
@@ -152,18 +114,25 @@ const videosData: Video[] = [
     position: 5,
     brand: "Wisebits",
   },
+  {
+    id: "6",
+    thumbnail: "https://images.pexels.com/photos/5473298/pexels-photo-5473298.jpeg?auto=compress&cs=tinysrgb&w=800",
+    title: "Remote Work Setup Guide 2024",
+    channel: "Work From Home",
+    platform: "youtube",
+    views: "789K",
+    status: "performing",
+    reach: 98000,
+    position: 3,
+    brand: "Olovka AI",
+  },
 ];
-
-const formatNumber = (num: number) => {
-  if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`;
-  if (num >= 1000) return `${(num / 1000).toFixed(1)}K`;
-  return num.toString();
-};
 
 const Videos = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [brandFilter, setBrandFilter] = useState<string>("all");
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [showAddDialog, setShowAddDialog] = useState(false);
   const [videoUrl, setVideoUrl] = useState("");
   const { toast } = useToast();
@@ -197,7 +166,6 @@ const Videos = () => {
   return (
     <AppLayout>
       <div className="animate-fade-in">
-        {/* Header */}
         <div className="mb-8">
           <div className="flex items-start justify-between">
             <div>
@@ -259,156 +227,105 @@ const Videos = () => {
           </div>
         </div>
 
-        {/* Filters */}
-        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center">
-          <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              placeholder="Search videos..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-9"
-            />
+        <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+            <div className="relative flex-1 min-w-[280px]">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                placeholder="Search videos..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-9"
+              />
+            </div>
+            <div className="flex gap-3">
+              <Select value={statusFilter} onValueChange={setStatusFilter}>
+                <SelectTrigger className="w-[160px]">
+                  <Filter className="mr-2 h-4 w-4" />
+                  <SelectValue placeholder="Status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Status</SelectItem>
+                  <SelectItem value="performing">Performing</SelectItem>
+                  <SelectItem value="stagnated">Stagnated</SelectItem>
+                  <SelectItem value="needs-boost">Needs Boost</SelectItem>
+                  <SelectItem value="boosting">Boosting</SelectItem>
+                  <SelectItem value="inactive">Inactive</SelectItem>
+                  <SelectItem value="pending">Pending</SelectItem>
+                  <SelectItem value="awaiting">Awaiting</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select value={brandFilter} onValueChange={setBrandFilter}>
+                <SelectTrigger className="w-[160px]">
+                  <SelectValue placeholder="Brand" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Brands</SelectItem>
+                  <SelectItem value="Olovka AI">Olovka AI</SelectItem>
+                  <SelectItem value="Wisebits">Wisebits</SelectItem>
+                  <SelectItem value="Teract">Teract</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
-          <div className="flex gap-3">
-            <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-[160px]">
-                <Filter className="mr-2 h-4 w-4" />
-                <SelectValue placeholder="Status" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Status</SelectItem>
-                <SelectItem value="performing">Performing</SelectItem>
-                <SelectItem value="stagnated">Stagnated</SelectItem>
-                <SelectItem value="needs-boost">Needs Boost</SelectItem>
-                <SelectItem value="boosting">Boosting</SelectItem>
-                <SelectItem value="inactive">Inactive</SelectItem>
-                <SelectItem value="pending">Pending</SelectItem>
-                <SelectItem value="awaiting">Awaiting</SelectItem>
-              </SelectContent>
-            </Select>
-            <Select value={brandFilter} onValueChange={setBrandFilter}>
-              <SelectTrigger className="w-[160px]">
-                <SelectValue placeholder="Brand" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Brands</SelectItem>
-                <SelectItem value="Olovka AI">Olovka AI</SelectItem>
-                <SelectItem value="Wisebits">Wisebits</SelectItem>
-                <SelectItem value="Teract">Teract</SelectItem>
-              </SelectContent>
-            </Select>
+
+          <div className="flex items-center gap-1 p-1 rounded-lg bg-muted/50">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setViewMode("grid")}
+              className={cn(
+                "h-8 px-3",
+                viewMode === "grid" && "bg-background shadow-sm"
+              )}
+            >
+              <LayoutGrid className="h-4 w-4" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setViewMode("list")}
+              className={cn(
+                "h-8 px-3",
+                viewMode === "list" && "bg-background shadow-sm"
+              )}
+            >
+              <List className="h-4 w-4" />
+            </Button>
           </div>
         </div>
 
-        {/* Videos Table */}
-        <div className="rounded-xl border bg-card">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-[400px]">Video</TableHead>
-                <TableHead>Platform</TableHead>
-                <TableHead>Brand</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead className="text-right">Position</TableHead>
-                <TableHead className="text-right">Reach</TableHead>
-                <TableHead className="w-[50px]"></TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filteredVideos.map((video) => (
-                <TableRow key={video.id}>
-                  <TableCell>
-                    <Link
-                      to={`/videos/${video.id}`}
-                      className="flex items-center gap-3 group"
-                    >
-                      <div className="relative h-16 w-28 flex-shrink-0 overflow-hidden rounded-lg bg-muted">
-                        <img
-                          src={video.thumbnail}
-                          alt={video.title}
-                          className="h-full w-full object-cover"
-                        />
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity group-hover:opacity-100">
-                          <PlayCircle className="h-8 w-8 text-white" />
-                        </div>
-                      </div>
-                      <div className="min-w-0">
-                        <p className="font-medium text-foreground line-clamp-2 group-hover:text-accent transition-colors">
-                          {video.title}
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          {video.channel} • {video.views} views
-                        </p>
-                      </div>
-                    </Link>
-                  </TableCell>
-                  <TableCell>
-                    {video.platform === "youtube" ? (
-                      <Badge className="bg-red-500 text-white">
-                        <SiYoutube className="mr-1 h-3 w-3" />
-                        YouTube
-                      </Badge>
-                    ) : (
-                      <Badge className="bg-black text-white dark:bg-white dark:text-black">
-                        <SiTiktok className="mr-1 h-3 w-3" />
-                        TikTok
-                      </Badge>
-                    )}
-                  </TableCell>
-                  <TableCell>
-                    <span className="text-sm text-foreground">{video.brand}</span>
-                  </TableCell>
-                  <TableCell>
-                    <span className={`status-badge ${statusStyles[video.status]}`}>
-                      {statusLabels[video.status]}
-                    </span>
-                  </TableCell>
-                  <TableCell className="text-right">
-                    {video.position > 0 ? (
-                      <span className="font-medium">#{video.position}</span>
-                    ) : (
-                      <span className="text-muted-foreground">—</span>
-                    )}
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <span className="font-medium">
-                      {video.reach > 0 ? formatNumber(video.reach) : "—"}
-                    </span>
-                  </TableCell>
-                  <TableCell>
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon">
-                          <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuItem>
-                          <Eye className="mr-2 h-4 w-4" />
-                          View Details
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          Open on YouTube
-                        </DropdownMenuItem>
-                        {video.status === "needs-boost" && (
-                          <DropdownMenuItem>
-                            <Zap className="mr-2 h-4 w-4" />
-                            Boost Comment
-                          </DropdownMenuItem>
-                        )}
-                        <DropdownMenuItem className="text-destructive">
-                          <Trash2 className="mr-2 h-4 w-4" />
-                          Remove
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+        {filteredVideos.length === 0 ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="glass-card p-12 text-center"
+          >
+            <p className="text-muted-foreground">No videos found matching your filters.</p>
+          </motion.div>
+        ) : viewMode === "grid" ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {filteredVideos.map((video, index) => (
+              <VideoCard key={video.id} {...video} index={index} />
+            ))}
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {filteredVideos.map((video, index) => (
+              <motion.div
+                key={video.id}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+              >
+                <VideoCard {...video} index={index} />
+              </motion.div>
+            ))}
+          </div>
+        )}
+
+        <div className="mt-6 flex items-center justify-between text-sm text-muted-foreground">
+          <p>Showing {filteredVideos.length} of {videosData.length} videos</p>
         </div>
       </div>
     </AppLayout>
