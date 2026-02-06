@@ -98,9 +98,9 @@ const BrandCard = ({ brand }: BrandCardProps) => {
                   </span>
                 </div>
               </div>
-              <div className="relative h-2 w-full overflow-hidden rounded-full bg-muted/30">
+              <div className="relative h-2 w-full overflow-hidden rounded-full bg-muted/30 pointer-events-none">
                 <div
-                  className={`h-full rounded-full ${status.color} transition-all duration-700 ease-out`}
+                  className={`h-full rounded-full ${status.color}`}
                   style={{ width: `${status.percent}%` }}
                 />
               </div>
